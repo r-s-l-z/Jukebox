@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Rosa López " content=" github @r-s-l-z">
+    <meta name="description" content="Proyecto de evaluación continua Jukebox.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>MP3 JUkEbOX</title>
+</head>
+<body>
+
+    <audio id="sonidoMoneda" src="/snd/sonidoMoneda.mp3"></audio>
+    <audio id="sonidoDevolucion" src="/snd/sonidoDevolucion.mp3"></audio>
+
+            <div class="jukebox">
+                <img src="/img/cabecera.png" alt="Cabecera jukebox disco vinilo arcoiris">
+                <div class="jukebox-header">
+                <h1 class="jukebox-title">MP3 JUKEBOX</h1>
+                <p class="jukebox-subtitle">CYBERPUNK EDITION</p>
+                </div>
+
+                <div class="display-screen">
+                <div class="now-playing">♪ Sonando Ahora...</div>
+                <div class="song-title" id="songTitle">Pista seleecionada...</div>
+                <div class="song-artist" id="songArtist">Selecciona cualquier pista para empezar</div>
+ 
+                <div style="margin-top: 15px;">
+                    <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                    </div>
+                    <div class="progress-bar-container" id="progressBarContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="wrapper crt">
+                    <h2>INSERTA MONEDA (Precio: 1.00 €)</h2>
+                    <div class="display-panel">
+                        <div id="saldo-display" class="display">SALDO: 0.00 €</div>
+                        <div id="statusMessage" class="status-message">BLOQUEADO: Inserta 1,00 € para jugar</div>
+                    </div>
+                    
+                    <div class="money-grid">
+                        <button class="btn-money" onclick="insertarMoneda(0.05)" title="0.05 €"><img class="img-coin" src="img/5cent.png" alt="5c"></button>
+                        <button class="btn-money" onclick="insertarMoneda(0.10)" title="0.10 €"><img class="img-coin" src="img/10cent.png" alt="10c"></button>
+                        <button class="btn-money" onclick="insertarMoneda(0.20)" title="0.20 €"><img class="img-coin" src="img/20cent.png" alt="20c"></button>
+                        <button class="btn-money" onclick="insertarMoneda(0.50)" title="0.50 €"><img class="img-coin" src="img/50cent.png" alt="50c"></button>
+                        <button class="btn-money" onclick="insertarMoneda(1.00)" title="1.00 €"><img class="img-coin" src="img/1€.png" alt="1€"></button>
+                        <button class="btn-money" onclick="insertarMoneda(2.00)" title="2.00 €"><img class="img-coin" src="img/2€.png" alt="2€"></button>
+                    </div>
+                    
+                    <button class="btn-reset" onclick="devolverEfectivo()">Cancelar ❌ Devolver</button>
+                </div>
+                
+                <div class="controls">
+                    <button class="control-btn" id="prevBtn" title="Previous">
+                        <i class="fas fa-backward"></i>
+                    </button>
+                    <button class="control-btn play-pause" id="playPauseBtn" title="Play/Pause">
+                        <i class="fas fa-play" id="playIcon"></i>
+                    </button>
+                    <button class="control-btn" id="stopBtn" title="Stop" onclick="detenerYPenalizar()" disabled>
+                        <i class="fas fa-square"></i>
+                    </button>
+                    <button class="control-btn" id="nextBtn" title="Next">
+                        <i class="fas fa-forward"></i>
+                    </button>
+                </div>
+
+                <div class="mode-controls">
+                    <button class="mode-btn" id="shuffleBtn" title="Shuffle">
+                        <i class="fas fa-shuffle"></i>
+                        <span>Shuffle</span>
+                    </button>
+                    <button class="mode-btn" id="repeatBtn" title="Repeat">
+                        <i class="fas fa-repeat"></i>
+                        <span>Repeat</span>
+                    </button>
+                    <button class="mode-btn" id="loopBtn" title="Loop All">
+                        <i class="fas fa-infinity"></i>
+                        <span>Loop</span>
+                    </button>
+                </div>
+
+                <div class="playlist" id="playlist"></div>
+
+                <div class="volume-control">
+                    <div class="volume-icon" id="volumeIcon" title="Mute/Unmute">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                    <span class="volume-percentage" id="volumeValue">70%</span>
+                </div>
+            </div>
+
+            <div class="status-message" id="statusMessage"></div>
+
+      <script src="functions.js"></script>
+</body>
+</html>
